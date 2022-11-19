@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form action="/create-product" method="post">
+                <div class="card bg-success">
+                    <div class="row mt-5">
+                        <% if(status && message){ let cls=(status=="Error" ) ? 'text-danger' : 'text-success' ; %>
+                            <div class="col-12">
+                                <h3 class="text <%= cls; %>">
+                                    <%= message; %>
+                                </h3>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="card-header text-center bg-info mt-3">
+                        <h2 style="font-family: serif;font-size: 30px;">Add A product</h2>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row bg-warning">
+                            <div class="col-12 mt-3">
+                                <label for="">Title</label>
+                                <input type="text" id="title" name="title" value="<%= userData.title; %>"
+                                    class="form-control">
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="">Description</label>
+                                <textarea name="description" id="description" cols="30" rows="3"
+                                    class="form-control"><%= userData.description; %></textarea>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="">Price</label>
+                                <input type="number" name="price" id="price" value="<%= userData.price; %>"
+                                    class="form-control">
+                            </div>
+                            <div class="col-12 mt-3 mb-3">
+                                <label>Parent Category</label>
+                                <select name="category" class="form-control" id="parentCategory">
+                                    <option value="">Select Parent Category</option>
+                                    <% if(Data) { %>
+                                        <% for(let i=0; i < Data.length; i++) { %>
+                                            <option value="<%= Data[i].id; %>">
+                                                <%= Data[i].title; %>
+                                            </option>
+                                            <% } %>
+                                                <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="col-12 text-center mt-2 mb-2">
+                            <input type="submit" value="submit" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

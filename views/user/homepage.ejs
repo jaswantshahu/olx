@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-12">
+        <h3>ALL Products</h3>
+        <div class="row">
+            <% for(let i = 0; i < products.length; i++){
+                let product = products[i];
+            %>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><%= product.title; %></h4>
+                    </div>
+                    <div class="card-body text-center" style="height: 200px;">
+                        <h3><%= product.description; %></h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-6">
+                               <b> <span class="ms-5">Price : <span class="product-price"><%= product.price; %></span>/-</span></b>
+                            </div>
+                            <div class="col-6">
+                                <a href="/buy-now?productId=<%= product.id; %>" class="btn btn-info">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>

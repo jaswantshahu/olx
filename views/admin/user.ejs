@@ -1,0 +1,73 @@
+<h1 class="text text-center">All Products</h1>
+<div class="container">
+    <table class="table table-bordered table-striped table-hover table-active border-primary table-primary">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>User</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(product) { %>
+                <% for(let i=0; i < product.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= i + 1; %>
+                        </td>
+                        <td>
+                            <%= product[i].userId; %>
+                        </td>
+                        <td>
+                            <%= product[i].title; %>
+                        </td>
+                        <td>
+                            <%= product[i].description; %>
+                        </td>
+                        <td>
+                            <%= product[i].price; %>
+                        </td>
+                        <td>
+                            <%= product[i].category; %>
+                        </td>
+                        <td>
+                            <select <%= (product[i].is_selled == 1) ? 'disabled="disabled"' : ''; %> onchange="updateProductStatus('<%= product[i].id; %>');"
+                                id="productStatus_<%= product[i].id; %>">
+                                <option value="pending" <%=(product[i].status=='pending' ) ? 'selected="selected"' : ''
+                                    ; %> %>>Pending</option>
+                                <option value="approved" <%=(product[i].status=='approved' ) ? 'selected="selected"'
+                                    : '' ; %> %>>Approved</option>
+                                <option value="rejected" <%=(product[i].status=='rejected' ) ? 'selected="selected"'
+                                    : '' ; %> %> >Rejected</option>
+                            </select>
+                        </td>
+                    </tr>
+        </tbody>
+        <% } %>
+            <% } %>
+    </table>
+</div>
+<script>
+    function updateProductStatus(productId) {
+        console.log("productId", productId);
+        let selectBoxId = 'productStatus_' + productId;
+        console.log("selectBoxId", selectBoxId);
+        let productStatus = $('#' + selectBoxId).val();
+        console.log("productStatus", productStatus);
+        $.ajax({
+            url: '/admin/product/update_status',
+            method: 'PUT',
+            data: { status: productStatus, proId: productId },
+            success: function (result) {
+
+            },
+            error: function (error) {
+
+            }
+        });
+    }
+</script>

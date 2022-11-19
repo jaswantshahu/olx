@@ -1,0 +1,45 @@
+<h1 class="text text-center">My All Purchased Products</h1>
+<div class="container">
+    <table class="table table-bordered text-center table-striped table-hover table-active border-primary table-primary">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Shipping Address</th>
+                <th>Billing Address</th>
+                <th>Item Title</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(product) { %>
+                <% for(let i=0; i < product.length; i++) { let singleProduct = product[i]; %>
+                <tr>
+                    <td>
+                        <%= i + 1; %>
+                    </td>
+                    <td>
+                        <%= singleProduct.full_name; %>
+                    </td>
+                    <td>
+                        <%= singleProduct.email; %>
+                    </td>
+                    <td>
+                        <%= singleProduct.shipping_address; %>
+                    </td>
+                    <td>
+                        <%= singleProduct.billing_address; %>
+                    </td>
+                    <td>
+                        <%= singleProduct.product_title; %>
+                    </td>
+                    <td>
+                        <span>RS <%= singleProduct.amount; %>/-</span>
+                    </td>
+                </tr>
+        </tbody>
+        <% } %>
+            <% } %>
+    </table>
+</div>

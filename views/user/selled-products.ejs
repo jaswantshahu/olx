@@ -1,0 +1,58 @@
+<h1 class="text text-center">Selled products</h1>
+<div class="container">
+    <table class="table table-bordered table-striped table-hover table-active border-primary table-primary">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Order Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(products) { %>
+                <% for(let i=0; i < products.length; i++) { let product = products[i]; %>
+                    <tr>
+                        <td>
+                            <%= i + 1; %>
+                        </td>
+                        <td>
+                            <%= product.title; %>
+                        </td>
+                        <td>
+                            <%= product.description; %>
+                        </td>
+                        <td>
+                            <%= product.price; %>
+                        </td>
+                        <td>
+                            <%= product.category_title; %>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <th>Full Name : </th>
+                                    <td><%= product.full_name; %></td>
+                                </tr>
+                                <tr>
+                                    <th>Email : </th>
+                                    <td><%= product.email; %></td>
+                                </tr>
+                                <tr>
+                                    <th>Shipping Add. : </th>
+                                    <td><%= product.shipping_address; %></td>
+                                </tr>
+                                <tr>
+                                    <th>Billing Add : </th>
+                                    <td><%= product.billing_address; %></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+        </tbody>
+        <% } %>
+            <% } %>
+    </table>
+</div>
